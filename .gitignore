@@ -7,3 +7,6 @@ heroku
 /views
 dist
 lib/config/auth.js
+todo.sublime-project
+todo.sublime-workspace
+newrelic_agent.log

@@ -19,7 +19,8 @@
     "ejs": "~0.8.4",
     "passport-http-bearer": "^1.0.1",
     "passport-facebook": "^1.0.3",
-    "randomstring": "^1.0.3"
+    "randomstring": "^1.0.3",
+    "newrelic": "^1.5.3"
   },
   "devDependencies": {
     "grunt": "~0.4.1",
