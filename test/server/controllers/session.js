@@ -2,12 +2,7 @@
 
 var app = require('../../../server'),
     request = require('supertest'),
-    passportStub = require('passport-stub'),
-    user, dummy = require('../dummyuser');
-
-dummy.init(function(data) {
-    user = data;
-});
+    passportStub = require('passport-stub');
 
 passportStub.install(app);
 
@@ -27,6 +22,9 @@ describe('Server Session Tests - ', function(done) {
         request(app).del('/api/session').expect(200, done);
     });
     it('Login - Return a 200', function(done) {
-        request(app).post('/api/session').send(user).expect(200, done);
+        request(app).post('/api/session').send({
+            'email': 'test@test.com',
+            'password': 'test'
+        }).expect(200, done);
     });
 });
