@@ -2,21 +2,18 @@
 
 var app = require('../../../server'),
     request = require('supertest'),
-    passportStub = require('passport-stub');
+    passportStub = require('passport-stub'),
+    user, dummy = require('../dummyuser');
 
-require('../dummyuser');
+dummy.init(function(data) {
+    user = data;
+});
 
 passportStub.install(app);
 
 var userFail = {
     'email': 'test@test.com',
     'password': '12345'
-};
-
-// user account
-var user = {
-    'email': 'test@test.com',
-    'password': 'test'
 };
 
 describe('Server Session Tests - ', function(done) {

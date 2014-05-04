@@ -1,18 +1,18 @@
 'use strict';
 
-describe('Service: Todo', function () {
+describe('Service: Todo', function() {
 
-  // load the service's module
-  beforeEach(module('todoApp'));
+    // load the service's module
+    beforeEach(module('todoApp'));
 
-  // instantiate service
-  var Todo;
-  beforeEach(inject(function (_Todo_) {
-    Todo = _Todo_;
-  }));
+    // instantiate service
+    var Todo;
+    beforeEach(inject(function(_Todo_) {
+        Todo = _Todo_;
+    }));
 
-  it('should do something', function () {
-    expect(!!Todo).toBe(true);
-  });
+    it('should do something', function() {
+        expect(!!Todo).toBe(true);
+    });
 
 });
