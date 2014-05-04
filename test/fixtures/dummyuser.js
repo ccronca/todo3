@@ -5,12 +5,11 @@ var mongoose = require('mongoose'),
 // Clear old users, then add a default user
 
 module.exports.init = function(callback) {
-    var user = {
-        provider: 'local',
+    var user = new User({
         name: 'Test User',
         email: 'test@test.com',
         password: 'test'
-    };
+    });
 
     User.find({}).remove(function() {
         User.create(user, function() {
