@@ -440,7 +440,7 @@ module.exports = function(grunt) {
         mochaTest: {
             options: {
                 reporter: 'spec',
-                require: ['server.js', 'test/server/silent_console.js']
+                require: ['server.js', 'test/silent_console.js']
             },
             src: ['test/server/**/*.js']
         },
