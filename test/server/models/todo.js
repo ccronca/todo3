@@ -4,17 +4,14 @@
  * Module dependencies.
  */
 
-var path = require('path'),
-    appPath = path.join(__dirname, '../../../lib/'),
-    config = require(appPath + 'config/config'),
-    mongoose = require('mongoose'),
+var mongoose = require('mongoose'),
+    db = require('../db.js'),
     should = require('should');
 
-require(appPath + 'models/user');
-require(appPath + 'models/todo');
+require(__base + 'models/user');
+require(__base + 'models/todo');
 
-var db = mongoose.connect(config.mongo.uri, config.mongo.options),
-    dummy = require('../../fixtures/dummyuser'),
+var dummy = require('../fixtures/dummyuser'),
     user, todo;
 
 
@@ -24,6 +21,7 @@ var User = mongoose.model('User'),
 
 //The tests
 describe('Todo Model', function() {
+    db();
     before(function(done) {
         dummy.init(function(data) {
             user = data;
