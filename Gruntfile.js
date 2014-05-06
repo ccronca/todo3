@@ -440,9 +440,10 @@ module.exports = function(grunt) {
         mochaTest: {
             options: {
                 reporter: 'spec',
-                require: ['server.js', 'test/silent_console.js']
+                require: [ /*'server.js', 'test/silent_console.js'*/ ]
             },
-            src: ['test/server/**/*.js']
+            // src: ['test/server/**/*.js']
+            src: ['test/server/models/todo.js']
         },
 
         env: {

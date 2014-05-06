@@ -3,32 +3,37 @@
 /**
  * Module dependencies.
  */
-var should = require('should'),
+
+var path = require('path'),
+    appPath = path.join(__dirname, '../../../lib/'),
+    config = require(appPath + 'config/config'),
     mongoose = require('mongoose'),
-    User = mongoose.model('User'),
+    should = require('should');
+
+require(appPath + 'models/user');
+require(appPath + 'models/todo');
+
+var db = mongoose.connect(config.mongo.uri, config.mongo.options),
+    dummy = require('../../fixtures/dummyuser'),
+    user, todo;
+
+
+var User = mongoose.model('User'),
     Todo = mongoose.model('Todo');
 
-//Globals
-var user;
-var todo;
 
 //The tests
 describe('Todo Model', function() {
-    beforeEach(function(done) {
-        user = new User({
-            name: 'Full name',
-            email: 'test@test.com',
-            username: 'user',
-            password: 'password'
-        });
-
-        user.save(function() {
-            todo = new Todo({
-                title: 'Article Title',
-                user: user
+    before(function(done) {
+        dummy.init(function(data) {
+            user = data;
+            Todo.find({}).remove(function() {
+                todo = new Todo({
+                    title: 'Article Title',
+                    user: user
+                });
+                done();
             });
-
-            done();
         });
     });
 
@@ -50,8 +55,7 @@ describe('Todo Model', function() {
         });
     });
 
-    afterEach(function(done) {
-        todo.remove();
+    after(function(done) {
         todo.remove();
         done();
     });
