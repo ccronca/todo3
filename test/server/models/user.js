@@ -2,34 +2,24 @@
 
 var should = require('should'),
     mongoose = require('mongoose'),
+    db = require('../db.js'),
     User = mongoose.model('User');
 
-var user;
+var dummy = require('../fixtures/dummyuser'),
+    user;
 
 describe('User Model', function() {
+    db();
     before(function(done) {
-        user = new User({
-            provider: 'local',
-            name: 'Fake User',
-            email: 'test@test.com',
-            password: 'password'
+        dummy.init(function(data) {
+            user = data;
+            done();
         });
-
-        // Clear users before testing
-        User.remove().exec();
-        done();
     });
 
     afterEach(function(done) {
         User.remove().exec();
         done();
-    });
-
-    it('should begin with no users', function(done) {
-        User.find({}, function(err, users) {
-            users.should.have.length(0);
-            done();
-        });
     });
 
     it('should fail when saving a duplicate user', function(done) {
@@ -50,7 +40,7 @@ describe('User Model', function() {
     });
 
     it('should authenticate user if password is valid', function() {
-        user.authenticate('password').should.be.true;
+        user.authenticate('test').should.be.true;
     });
 
     it('should not authenticate user if password is invalid', function() {
