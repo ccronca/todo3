@@ -32,8 +32,6 @@ describe('Todo Model', function() {
     });
   });
 
-  db();
-
   describe('Method Save', function() {
     it('should be able to save without problems', function(done) {
       return todo.save(function(err) {
