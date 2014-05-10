@@ -1,23 +1,18 @@
 'use strict';
 
+require(__base + 'models/user');
+
 var mongoose = require('mongoose'),
-    User = mongoose.model('User');
+  User = mongoose.model('User'),
+  user = require('./dummyuserdata');
 
 // Clear old users, then add a default user
 
 module.exports.init = function(callback) {
-    var user = new User({
-        name: 'Test User',
-        email: 'test@test.com',
-        password: 'test',
-        provider: 'local',
-        roles: ['authenticated']
+  User.find({}).remove(function() {
+    User.create(user, function() {
+      console.log('finished populating users');
+      callback(user);
     });
-
-    User.find({}).remove(function() {
-        User.create(user, function() {
-            console.log('finished populating users');
-            callback(user);
-        });
-    });
+  });
 };
