@@ -27,7 +27,7 @@ describe('Todo Model', function() {
             user = data;
             Todo.find({}).remove(function() {
                 todo = new Todo({
-                    title: 'Article Title',
+                    title: 'Title',
                     user: user
                 });
                 done();
@@ -51,6 +51,18 @@ describe('Todo Model', function() {
                 done();
             });
         });
+    });
+
+    describe('Method load', function() {
+        it('should populate only user email', function(done) {
+            Todo.load(todo._id, function(err, data) {
+                data.user.should.have.property('email');
+                data.user.should.not.have.properties(['hashed_password', 'password', 'roles']);
+                done();
+            });
+        });
+
+
     });
 
     after(function(done) {
