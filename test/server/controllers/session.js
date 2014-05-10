@@ -27,7 +27,6 @@ var userFail = {
 };
 
 describe('Server Session Tests - ', function(done) {
-  db();
   before(function(done) {
     dummy.init(function(data) {
       user = data;

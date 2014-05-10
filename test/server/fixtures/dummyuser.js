@@ -10,9 +10,9 @@ var mongoose = require('mongoose'),
 
 module.exports.init = function(callback) {
   User.find({}).remove(function() {
-    User.create(user, function() {
+    User.create(user, function(err, data) {
       console.log('finished populating users');
-      callback(user);
+      callback(data);
     });
   });
 };

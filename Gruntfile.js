@@ -438,7 +438,7 @@ module.exports = function(grunt) {
         reporter: 'spec'
       },
       include: ['test/server/app_path.js'],
-      src: ['test/server/controllers/*.js']
+      src: ['test/server/controllers/*.js', 'test/server/models/*.js']
     },
 
     env: {
