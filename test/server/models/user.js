@@ -31,6 +31,13 @@ describe('User Model', function() {
         });
     });
 
+    it('should hash password when save', function(done) {
+        user.save(function(err, data) {
+            should.exist(data.hashed_password);
+            done();
+        });
+    });
+
     it('should fail when saving without an email', function(done) {
         user.email = '';
         user.save(function(err, data) {
@@ -39,12 +46,17 @@ describe('User Model', function() {
         });
     });
 
-    it('should authenticate user if password is valid', function() {
+    it('should authenticate user if password is valid', function(done) {
         user.authenticate('test').should.be.true;
+        done();
     });
 
-    it('should not authenticate user if password is invalid', function() {
+    it('should not authenticate user if password is invalid', function(done) {
         user.authenticate('blah').should.not.be.true;
+        done();
     });
-
+    it('should hash password', function(done) {
+        user.hashPassword('test').should.be.equal(user.hashed_password);
+        done();
+    });
 });
