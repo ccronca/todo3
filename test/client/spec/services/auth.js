@@ -33,4 +33,27 @@ describe('Service: Auth', function() {
     });
 
   });
+
+  it('should create user', function() {
+    Auth.createUser(user, function(data) {
+      expect(data).toEqual(user);
+      expect($rootScope.currentUser).toEqual(user);
+    });
+
+  });
+
+  it('should change password of user', function() {
+    var newpassword = 'newpassword';
+    Auth.changePassword(user.password, newpassword, function(data) {
+      expect(data.password).toEqual(newpassword);
+    });
+
+  });
+
+  it('should check user login status', function() {
+    expect(Auth.isLoggedIn()).toBeFalsy();
+    $rootScope.currentUser = user;
+    expect(Auth.isLoggedIn()).toBeTruthy();
+  });
+
 });
