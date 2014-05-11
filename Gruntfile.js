@@ -433,6 +433,14 @@ module.exports = function(grunt) {
       }
     },
 
+    protractor: {
+      options: {
+        keepAlive: true,
+        configFile: 'protractor.conf.js'
+      },
+      run: {}
+    },
+
     mochaTest: {
       options: {
         reporter: 'spec'
@@ -507,11 +515,15 @@ module.exports = function(grunt) {
         'concurrent:test',
         'autoprefixer',
         'karma'
+        /*,
+        'protractor'*/
       ]);
-    } else grunt.task.run([
-      'test:server',
-      'test:client'
-    ]);
+    } else {
+      return grunt.task.run([
+        'test:server',
+        'test:client'
+      ]);
+    }
   });
 
   grunt.registerTask('build', [

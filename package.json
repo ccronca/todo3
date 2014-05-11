@@ -75,7 +75,9 @@
     "grunt-nodemon": "~0.2.0",
     "open": "~0.0.4",
     "passport-stub": "^1.0.0",
-    "grunt-jsbeautifier": "^0.2.7"
+    "grunt-jsbeautifier": "^0.2.7",
+    "grunt-protractor-runner": "^0.2.4",
+    "protractor": "^0.22.0"
   },
   "engines": {
     "node": ">=0.10.0"
