@@ -2,17 +2,31 @@
 
 describe('Service: Todo', function() {
 
-    // load the service's module
-    beforeEach(module('todoApp'));
+  // load the service's module
+  beforeEach(module('todoApp'));
 
-    // instantiate service
-    var Todo;
-    beforeEach(inject(function(_Todo_) {
-        Todo = _Todo_;
-    }));
+  var Todo, mockBackend;
 
-    it('should do something', function() {
-        expect(!!Todo).toBe(true);
-    });
+  // instantiate service
+  beforeEach(inject(function(_Todo_, _$httpBackend_) {
+    Todo = _Todo_;
+    mockBackend = _$httpBackend_;
+  }));
+
+  it('should exists', function() {
+    expect( !! Todo).toBeTruthy();
+  });
+
+  it('should contain todos', function() {
+    mockBackend.when('GET', 'api/todos')
+      .respond([{
+        id: 0,
+        title: 'Test title'
+      }]);
+
+    var todos = Todo.query();
+    mockBackend.flush();
+    expect(todos.length).toEqual(1);
+  });
 
 });
