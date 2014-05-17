@@ -532,9 +532,8 @@ module.exports = function(grunt) {
         'clean:server',
         'concurrent:test',
         'autoprefixer',
-        'karma'
-        /*,
-        'protractor'*/
+        'karma',
+        'protractor'
       ]);
     } else {
       return grunt.task.run([
