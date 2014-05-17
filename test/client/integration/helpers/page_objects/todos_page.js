@@ -20,8 +20,24 @@
       return browser.findElement(this.By.css("span#todo-count"));
     });
 
-    TodosPage.has("archiveButton", function() {
-      return browser.findElement(this.byLabel("archive"));
+    TodosPage.has("allCheckedButton", function() {
+      return browser.findElement(this.By.input("allChecked"));
+    });
+
+    TodosPage.has("clearCompletedButton", function() {
+      return browser.findElement(this.By.css("input#clear-completed"));
+    });
+
+    TodosPage.has("filterAllLink", function() {
+      return browser.findElement(this.By.css("a#filter-all"));
+    });
+
+    TodosPage.has("filterActiveLink", function() {
+      return browser.findElement(this.By.css("a#filter-active"));
+    });
+
+    TodosPage.has("filterCompletedLink", function() {
+      return browser.findElement(this.By.css("a#filter-completed"));
     });
 
     TodosPage.has("todos", function() {
@@ -30,7 +46,7 @@
 
     TodosPage.has("form", function() {
       var form;
-      form = browser.findElement(this.By.css("form#todo-form]"));
+      form = browser.findElement(this.By.css("form#todo-form"));
       return new FormView(form);
     });
 

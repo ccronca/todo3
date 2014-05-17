@@ -12,21 +12,13 @@
       this.base = base;
     }
 
-    FormView.has("nameField", function() {
-      return this.base.findElement(this.By.input("task.name"));
+    FormView.has("todoField", function() {
+      return this.base.findElement(this.By.input("newTodo"));
     });
 
-    FormView.has("doneCheckbox", function() {
-      return this.base.findElement(this.By.input("task.done"));
-    });
-
-    FormView.has("submitButton", function() {
-      return this.base.findElement(this.byLabel("Add", "button"));
-    });
-
-    FormView.prototype.setName = function(value) {
-      this.nameField.clear();
-      return this.nameField.sendKeys(value);
+    FormView.prototype.setTodo = function(value) {
+      this.todoField.clear();
+      return this.todoField.sendKeys(value);
     };
 
     return FormView;

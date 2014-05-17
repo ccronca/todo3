@@ -1,5 +1,5 @@
 expect = require("./helpers/expect")
-
+utils = require("./helpers/utils")
 TodosPage = require("./helpers/page_objects/todos_page")
 
 describe "Tasks page", ->
@@ -9,6 +9,7 @@ describe "Tasks page", ->
     browser.get "/todos"
 
     todosPage = new TodosPage()
+    utils.loadFixtures('/api/todos/_loadFixtures')
 
   it "displays a valid page title", ->
     expect(browser.getCurrentUrl()).to.eventually.match /todos$/
@@ -21,53 +22,75 @@ describe "Tasks page", ->
       expect(todosPage.remaining.getText()).to.eventually.eq "2 items left"
 
       todo = todosPage.todoAt(0)
-      expect(todo.isCompleted()).to.eventually.be.false
+      expect(todo.isCompleted()).to.eventually.be.true
 
       completedTask = todosPage.todoAt(2)
-      expect(completedTask.isCompleted()).to.eventually.be.true
+      expect(completedTask.isCompleted()).to.eventually.be.false
 
-  # describe "click on `archive` button", ->
-  #   beforeEach ->
-  #     tasksPage.archiveButton.click()
+  describe "click on 'allChecked' button", ->
+    beforeEach ->
+      todosPage.allCheckedButton.click()
 
-  #   it "archives all completed tasks", ->
-  #     expect(tasksPage.tasksCount()).to.eventually.eq 2
-  #     expect(tasksPage.remaining.getText()).to.eventually.eq "2 of 2 remaining"
+    it "mark all task as completed", ->
+      expect(todosPage.todosCount()).to.eventually.eq 3
+      expect(todosPage.remaining.getText()).to.eventually.eq "0 items left"
 
-  # describe "click on task's checkbox", ->
-  #   task = null
+    it "unmark all tasks", ->
+      todosPage.allCheckedButton.click()
+      expect(todosPage.todosCount()).to.eventually.eq 3
+      expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
 
-  #   describe "when a task is not completed", ->
-  #     beforeEach ->
-  #       task = tasksPage.taskAt(1)
-  #       task.checkbox.click()
+  describe "click on 'clearCompleted' button", ->
+    it "delete completed tasks", ->
+      todosPage.clearCompletedButton.click()
+      expect(todosPage.todosCount()).to.eventually.eq 2)
+      expect(todosPage.remaining.getText()).to.eventually.eq "2 items left"
 
-  #     it "marks the task as completed", ->
-  #       expect(task.isCompleted()).to.eventually.be.true
-  #       expect(tasksPage.remaining.getText()).to.eventually.eq "1 of 3 remaining"
+  describe "click on 'filterCompleted' link", ->
+    it "show only completed tasks", ->
+      todos.filterCompletedLink.click()
+      expect(todosPage.todosCount()).to.eventually.eq 1)
+      expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
 
-  #   describe "when a task is completed", ->
-  #     beforeEach ->
-  #       task = tasksPage.taskAt(2)
-  #       task.checkbox.click()
+  describe "click on 'filterActive' link", ->
+    it "show only active tasks", ->
+      todos.filterActiveLink.click()
+      expect(todosPage.todosCount()).to.eventually.eq 2)
+      expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
 
-  #     it "marks the task as not completed", ->
-  #       expect(task.isCompleted()).to.eventually.be.false
-  #       expect(tasksPage.remaining.getText()).to.eventually.eq "3 of 3 remaining"
+  describe "click on todo's checkbox", ->
+    todo = null
 
-  # describe "new task form", ->
-  #   form = null
-  #   beforeEach -> form = tasksPage.form
+    describe "when a todo is not completed", ->
+      beforeEach ->
+        todo = todosPage.todoAt(1)
+        todo.checkbox.click()
 
-  #   describe "fill in the name and click `create` button", ->
+      it "marks the todo as completed", ->
+        expect(todo.isCompleted()).to.eventually.be.true
+        expect(todosPage.remaining.getText()).to.eventually.eq "1 item left"
 
-  #     it "creates a new task", ->
-  #       form.setName "New task"
-  #       form.submitButton.click()
+    describe "when a todo is completed", ->
+      beforeEach ->
+        todo = todosPage.todoAt(0)
+        todo.checkbox.click()
 
-  #       expect(tasksPage.tasksCount()).to.eventually.eq 4
-  #       expect(tasksPage.remaining.getText()).to.eventually.eq "3 of 4 remaining"
+      it "marks the todo as not completed", ->
+        expect(todo.isCompleted()).to.eventually.be.false
+        expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
 
-  #       task = tasksPage.taskAt(2)
-  #       expect(task.isCompleted()).to.eventually.be.false
-  #       expect(task.label.getText()).to.eventually.eq "New task"
+  describe "new todo form", ->
+    form = null
+    beforeEach -> form = todosPage.form
+
+    describe "fill in the title and return", ->
+
+      it "creates a new todo", ->
+        form.setTodo "New todo\n"
+
+        expect(todosPage.todosCount()).to.eventually.eq 4
+        expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
+
+        todo = todosPage.todoAt(0)
+        expect(todo.isCompleted()).to.eventually.be.false
+        expect(todo.label.getText()).to.eventually.eq "New todo"

@@ -7,14 +7,28 @@ class TodosPage extends PageObject
   @has "remaining", ->
     browser.findElement @By.css("span#todo-count")
 
-  @has "archiveButton", ->
-    browser.findElement @byLabel "archive"
+  @has "allCheckedButton", ->
+    browser.findElement @By.input "allChecked"
+
+  @has "clearCompletedButton", ->
+    browser.findElement @By.css "input#clear-completed"
+
+  @has "filterAllLink", ->
+    browser.findElement @By.css "a#filter-all"
+
+  @has "filterActiveLink", ->
+    browser.findElement @By.css "a#filter-active"
+
+  @has "filterCompletedLink", ->
+    browser.findElement @By.css "a#filter-completed"
+
+
 
   @has "todos", ->
     browser.findElements @By.css("ul#todo-list li")
 
   @has "form", ->
-    form = browser.findElement @By.css("form#todo-form]")
+    form = browser.findElement @By.css("form#todo-form")
     new FormView(form)
 
   todoAt: (index) ->
