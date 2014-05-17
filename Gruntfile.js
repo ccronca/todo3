@@ -1,6 +1,10 @@
 // Generated on 2014-05-10 using generator-angular-fullstack 1.4.2
 'use strict';
 
+var paths = {
+  coffee: ['<%= yeoman.app %>/scripts/**/*.coffee', 'lib/**/*.coffee', 'test/**/*.coffee']
+};
+
 // # Globbing
 // for performance reasons we're only matching one level down:
 // 'test/spec/{,*/}*.js'
@@ -53,6 +57,10 @@ module.exports = function(grunt) {
         options: {
           livereload: true
         }
+      },
+      coffee: {
+        files: paths.coffee,
+        tasks: 'coffee'
       },
       mochaTest: {
         files: ['test/server/{,*/}*.js'],
@@ -448,7 +456,17 @@ module.exports = function(grunt) {
       include: ['test/server/app_path.js'],
       src: ['test/server/controllers/*.js', 'test/server/models/*.js']
     },
-
+    coffee: {
+      compile: {
+        files: [{
+          expand: true,
+          cwd: '',
+          src: paths.coffee,
+          dest: '',
+          ext: '.js'
+        }]
+      }
+    },
     env: {
       test: {
         NODE_ENV: 'test'
