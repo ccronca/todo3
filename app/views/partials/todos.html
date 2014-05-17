@@ -32,13 +32,13 @@
     </span>
     <ul id="filters">
       <li>
-        <a ng-class="{selected: status == ''} " href="todos?">All</a>
+        <a ng-class="{selected: status == ''} " href="todos?" id="filter-all">All</a>
       </li>
       <li>
-        <a ng-class="{selected: status == 'active'}" href="todos?q=active">Active</a>
+        <a ng-class="{selected: status == 'active'}" href="todos?q=active" id="filter-active">Active</a>
       </li>
       <li>
-        <a ng-class="{selected: status == 'completed'}" href="todos?q=completed">Completed</a>
+        <a ng-class="{selected: status == 'completed'}" href="todos?q=completed" id="filter-completed">Completed</a>
       </li>
     </ul>
     <button id="clear-completed" ng-click="clearCompletedTodos()" ng-show="completedCount">Clear completed ({{completedCount}})</button>
