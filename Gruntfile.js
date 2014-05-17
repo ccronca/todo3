@@ -505,6 +505,19 @@ module.exports = function(grunt) {
       ]);
     }
 
+    if (target === 'test') {
+      grunt.task.run([
+        'env:test',
+        'clean:server',
+        'bower-install',
+        'concurrent:server',
+        'autoprefixer',
+        'express:dev',
+        'open',
+        'watch'
+      ]);
+    }
+
     grunt.task.run([
       'clean:server',
       'bower-install',
