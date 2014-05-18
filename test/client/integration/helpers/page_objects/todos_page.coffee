@@ -11,7 +11,7 @@ class TodosPage extends PageObject
     browser.findElement @By.input "allChecked"
 
   @has "clearCompletedButton", ->
-    browser.findElement @By.css "input#clear-completed"
+    browser.findElement @By.css "button#clear-completed"
 
   @has "filterAllLink", ->
     browser.findElement @By.css "a#filter-all"
@@ -21,8 +21,6 @@ class TodosPage extends PageObject
 
   @has "filterCompletedLink", ->
     browser.findElement @By.css "a#filter-completed"
-
-
 
   @has "todos", ->
     browser.findElements @By.css("ul#todo-list li")

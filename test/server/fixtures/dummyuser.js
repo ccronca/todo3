@@ -1,6 +1,6 @@
 'use strict';
 
-require(__base + 'models/user');
+require(process.cwd() + '/lib/models/user');
 
 var mongoose = require('mongoose'),
   User = mongoose.model('User'),
@@ -8,10 +8,10 @@ var mongoose = require('mongoose'),
 
 // Clear old users, then add a default user
 
-module.exports.init = function(callback) {
+module.exports = function(callback) {
   User.find({}).remove(function() {
     User.create(user, function(err, data) {
-      console.log('finished populating users');
+      if (err) return new Error(err);
       callback(data);
     });
   });

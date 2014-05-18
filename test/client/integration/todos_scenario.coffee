@@ -1,62 +1,68 @@
 expect = require("./helpers/expect")
 utils = require("./helpers/utils")
 TodosPage = require("./helpers/page_objects/todos_page")
+SignInPage = require("./helpers/page_objects/signin_page")
 
 describe "Tasks page", ->
   todosPage = null
+  signinPage = null
 
   beforeEach ->
-    browser.get "/todos"
-
     todosPage = new TodosPage()
+    signinPage = new SignInPage()
     utils.loadFixtures('/api/todos/_loadFixtures')
+
+    browser.get "/login"
+    signinPage.signin()
+
+    browser.get "/todos"
 
   it "displays a valid page title", ->
     expect(browser.getCurrentUrl()).to.eventually.match /todos$/
     expect(browser.getTitle()).to.eventually.eq "Todos App"
 
-  describe "tasks list", ->
+  describe "todos list", ->
 
-    it "displays all tasks", ->
+    it "displays all todos", ->
       expect(todosPage.todosCount()).to.eventually.eq 3
       expect(todosPage.remaining.getText()).to.eventually.eq "2 items left"
 
       todo = todosPage.todoAt(0)
-      expect(todo.isCompleted()).to.eventually.be.true
+      expect(todo.isCompleted()).to.eventually.be.false
 
       completedTask = todosPage.todoAt(2)
-      expect(completedTask.isCompleted()).to.eventually.be.false
+      expect(completedTask.isCompleted()).to.eventually.be.true
 
   describe "click on 'allChecked' button", ->
     beforeEach ->
       todosPage.allCheckedButton.click()
 
-    it "mark all task as completed", ->
+    it "mark all todos as completed", ->
       expect(todosPage.todosCount()).to.eventually.eq 3
       expect(todosPage.remaining.getText()).to.eventually.eq "0 items left"
 
-    it "unmark all tasks", ->
+    it "twice unmark all todos", ->
       todosPage.allCheckedButton.click()
       expect(todosPage.todosCount()).to.eventually.eq 3
       expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
 
   describe "click on 'clearCompleted' button", ->
-    it "delete completed tasks", ->
+    it "delete completed todos", ->
       todosPage.clearCompletedButton.click()
-      expect(todosPage.todosCount()).to.eventually.eq 2)
+      expect(todosPage.todosCount()).to.eventually.eq 2
       expect(todosPage.remaining.getText()).to.eventually.eq "2 items left"
 
   describe "click on 'filterCompleted' link", ->
-    it "show only completed tasks", ->
-      todos.filterCompletedLink.click()
-      expect(todosPage.todosCount()).to.eventually.eq 1)
-      expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
+    it "show only completed todos", ->
+      todosPage.filterCompletedLink.click()
+      expect(todosPage.todosCount()).to.eventually.eq 1
+      expect(todosPage.remaining.getText()).to.eventually.eq "2 items left"
 
   describe "click on 'filterActive' link", ->
-    it "show only active tasks", ->
-      todos.filterActiveLink.click()
-      expect(todosPage.todosCount()).to.eventually.eq 2)
-      expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
+    it "show only active todos", ->
+      todosPage.filterActiveLink.click()
+      expect(todosPage.todosCount()).to.eventually.eq 2
+      expect(todosPage.remaining.getText()).to.eventually.eq "2 items left"
 
   describe "click on todo's checkbox", ->
     todo = null
@@ -72,7 +78,7 @@ describe "Tasks page", ->
 
     describe "when a todo is completed", ->
       beforeEach ->
-        todo = todosPage.todoAt(0)
+        todo = todosPage.todoAt(2)
         todo.checkbox.click()
 
       it "marks the todo as not completed", ->

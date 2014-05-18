@@ -1,7 +1,7 @@
 'use strict';
 
 var mongoose = require('mongoose'),
-  config = require(__base + 'config/config'),
+  config = require(process.cwd() + '/lib/config/config'),
   db = mongoose.connect(config.mongo.uri, config.mongo.options),
   connection = mongoose.connection;
 

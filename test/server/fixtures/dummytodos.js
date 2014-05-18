@@ -4,14 +4,22 @@ require(process.cwd() + '/lib/models/todo');
 
 var mongoose = require('mongoose'),
   Todo = mongoose.model('Todo'),
-  todos = require('./dummytodosdata');
+  todos = require('./dummytodosdata'),
+  dummyuser = require('./dummyuser')
 
-// Clear old users, then add a default user
+  // Clear old users, then add a default user
 
-module.exports = function() {
-  Todo.find({}).remove(function() {
-    for (var i = todos.length - 1; i >= 0; i--) {
-      Todo.create(todos[i]);
-    }
-  });
-};
+  module.exports = function(callback) {
+    Todo.find({}).remove(function() {
+      dummyuser(function(user) {
+        todos = todos.map(function(t) {
+          t['user'] = user;
+          return t;
+        });
+        Todo.create(todos, function(err, data) {
+          if (err) return new Error(err);
+          callback(user);
+        });
+      });
+    });
+  };

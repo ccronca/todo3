@@ -8,7 +8,7 @@ var mongoose = require('mongoose'),
   db = require('../db.js'),
   should = require('should');
 
-require(__base + 'models/todo');
+require(process.cwd() + '/lib/models/todo');
 
 var dummy = require('../fixtures/dummyuser'),
   user, todo;
@@ -20,7 +20,7 @@ var Todo = mongoose.model('Todo');
 //The tests
 describe('Todo Model', function() {
   before(function(done) {
-    dummy.init(function(data) {
+    dummy(function(data) {
       user = data;
       Todo.find({}).remove(function() {
         todo = new Todo({

@@ -2,7 +2,7 @@
 'use strict';
 
 var paths = {
-  coffee: ['<%= yeoman.app %>/scripts/**/*.coffee', 'lib/**/*.coffee', 'test/**/*.coffee']
+  coffee: ['<%= yeoman.app %>/scripts/**/*.coffee']
 };
 
 // # Globbing
@@ -453,7 +453,7 @@ module.exports = function(grunt) {
       options: {
         reporter: 'spec'
       },
-      include: ['test/server/app_path.js'],
+      include: [],
       src: ['test/server/controllers/*.js', 'test/server/models/*.js']
     },
     coffee: {
@@ -502,19 +502,6 @@ module.exports = function(grunt) {
         'concurrent:server',
         'autoprefixer',
         'concurrent:debug'
-      ]);
-    }
-
-    if (target === 'test') {
-      grunt.task.run([
-        'env:test',
-        'clean:server',
-        'bower-install',
-        'concurrent:server',
-        'autoprefixer',
-        'express:dev',
-        'open',
-        'watch'
       ]);
     }
 

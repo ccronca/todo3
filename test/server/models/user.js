@@ -10,7 +10,7 @@ var dummy = require('../fixtures/dummyuser'),
 
 describe('User Model', function() {
   before(function(done) {
-    dummy.init(function(data) {
+    dummy(function(data) {
       user = data;
       done();
     });

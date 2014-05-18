@@ -5,17 +5,17 @@ var should = require('should'),
   db = require('../db.js'),
   express = require('express'),
   request = require('supertest'),
-  session = require(__base + 'controllers/session'),
+  session = require(process.cwd() + '/lib/controllers/session'),
   user;
 
 var dummy = require('../fixtures/dummyuser');
 
 // Passport Configuration
-var passport = require(__base + 'config/passport');
+var passport = require(process.cwd() + '/lib/config/passport');
 
 // Setup Express
 var app = express();
-require(__base + 'config/express')(app);
+require(process.cwd() + '/lib/config/express')(app);
 
 app.route('/api/session')
   .post(session.login)
@@ -28,7 +28,7 @@ var userFail = {
 
 describe('Server Session Tests - ', function(done) {
   before(function(done) {
-    dummy.init(function(data) {
+    dummy(function(data) {
       user = data;
       done();
     });

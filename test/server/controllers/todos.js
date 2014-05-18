@@ -8,18 +8,18 @@ var should = require('should'),
   passportStub = require('passport-stub'),
   user, req = {}, res = {};
 
-require(__base + 'models/todo');
+require(process.cwd() + '/lib/models/todo');
 
 
 var dummy = require('../fixtures/dummyuser'),
-  todos = require(__base + 'controllers/todos');
+  todos = require(process.cwd() + '/lib/controllers/todos');
 
 // Passport Configuration
-var passport = require(__base + 'config/passport');
+var passport = require(process.cwd() + '/lib/config/passport');
 
 // Setup Express
 var app = express();
-require(__base + 'config/express')(app);
+require(process.cwd() + '/lib/config/express')(app);
 
 passportStub.install(app);
 
@@ -43,7 +43,7 @@ var create = function(done) {
 
 describe('Server Todos Controller - ', function(done) {
   before(function(done) {
-    dummy.init(function(data) {
+    dummy(function(data) {
       user = data;
       done();
     });
