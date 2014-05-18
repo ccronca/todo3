@@ -7,7 +7,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['jasmine'],
+    frameworks: ['mocha', 'chai'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -19,9 +19,12 @@ module.exports = function(config) {
       'app/bower_components/angular-route/angular-route.js',
       'app/scripts/*.js',
       'app/scripts/**/*.js',
-      'test/client/mock/**/*.mock.js',
-      'test/client/unit/**/*.spec.js'
+      "test/client/unit/**/*_spec.coffee"
     ],
+
+    preprocessors: {
+      "test/client/unit/**/*_spec.coffee": ['coffee']
+    },
 
     // list of files / patterns to exclude
     exclude: [],

@@ -39,12 +39,18 @@ exports.config = {
   // Jasmine and Cucumber are fully supported as a test and assertion framework.
   // Mocha has limited beta support. You will need to include your own
   // assertion framework if working with mocha.
-  framework: 'jasmine',
+  framework: 'mocha',
 
   // ----- Options to be passed to minijasminenode -----
   //
   // See the full list at https://github.com/juliemr/minijasminenode
   jasmineNodeOpts: {
     defaultTimeoutInterval: 30000
+  },
+
+  mochaOpts: {
+    ui: "bdd",
+    reporter: "list"
   }
+
 };
