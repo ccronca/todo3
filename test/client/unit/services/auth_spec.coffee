@@ -10,6 +10,11 @@ describe "Module `todoApp Auth factory`", ->
       email: "test@test.com"
       password: "bar"
 
+    invoked = false
+
+    callback = (err) ->
+      invoked = true
+
     loginUser = (callback) ->
       $httpBackend.whenPOST("/api/session").respond(user)
       promise = Auth.login user, ->
@@ -21,6 +26,7 @@ describe "Module `todoApp Auth factory`", ->
       $rootScope = _$rootScope_
       $httpBackend = _$httpBackend_
       Auth = _Auth_
+      invoked = false
 
     it "is defined", ->
       expect(Auth).to.not.be.undefined
@@ -41,19 +47,26 @@ describe "Module `todoApp Auth factory`", ->
       it "delete current user", ->
 
         $httpBackend.whenDELETE("/api/session").respond({})
-        loginUser ->
-          promise = Auth.logout ->
-            expect($rootScope.currentUser).to.be.null
+        $rootScope.currentUser = user
+        promise = Auth.logout callback
+        expect(promise).to.not.be.undefined
+        $httpBackend.flush()
+
+        expect(invoked).to.be.true
+        expect($rootScope.currentUser).to.be.null
 
     describe ".createUser()", ->
       it "is defined", ->
         expect(Auth.createUser).to.not.be.undefined
       it "populate current user", ->
         $httpBackend.whenPOST("/api/users").respond(user)
-        promise = Auth.createUser user, ->
-          expect($rootScope.currentUser.email).to.not.be.undefined
-          expect($rootScope.currentUser.email).to.equal user.email
+        promise = Auth.createUser user, callback
+        expect(promise).to.not.be.undefined
         $httpBackend.flush()
+
+        expect(invoked).to.be.true
+        expect($rootScope.currentUser.email).to.not.be.undefined
+        expect($rootScope.currentUser.email).to.equal user.email
 
     describe ".currentUser()", ->
       it "is defined", ->
