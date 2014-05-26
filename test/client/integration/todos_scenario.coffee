@@ -93,10 +93,34 @@ describe "Tasks page", ->
 
       it "creates a new todo", ->
         form.setTodo "New todo\n"
-
+        utils.takeScreenshot()
         expect(todosPage.todosCount()).to.eventually.eq 4
         expect(todosPage.remaining.getText()).to.eventually.eq "3 items left"
 
         todo = todosPage.todoAt(0)
         expect(todo.isCompleted()).to.eventually.be.false
         expect(todo.label.getText()).to.eventually.eq "New todo"
+
+  describe "click on todo label", ->
+
+    describe "and write a new title", ->
+      it "change the title when press return", ->
+        todo = todosPage.todoAt(1)
+        todo.label.click()
+        todo.setTodo "another test\n"
+        expect(todo.label.getText()).to.eventually.eq "another test"
+
+      it "change the title whe loose focus", ->
+        todo = todosPage.todoAt(1)
+        todo.label.click()
+        todo.setTodo "another mogly test"
+        todosPage.todoAt(2).label.click()
+        expect(todo.label.getText()).to.eventually.eq "another mogly test"
+
+     it "dont change the title when esc is pressed", ->
+        todo = todosPage.todoAt(1)
+        todo.label.getText().then (oldlabel) ->
+          todo.label.click()
+          todo.setTodo "another mogly test"
+          protractor.getInstance().actions().sendKeys(protractor.Key.ESCAPE).perform();
+          expect(todo.label.getText()).to.eventually.eq oldlabel

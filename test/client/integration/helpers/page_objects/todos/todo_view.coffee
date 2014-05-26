@@ -10,6 +10,13 @@ class TodoView extends PageObject
   @has "label", ->
     @element.findElement @By.css("label")
 
+  @has "input", ->
+    @element.findElement @By.css("input.edit")
+
+  setTodo: (value) ->
+    @input.clear()
+    @input.sendKeys value
+
   isCompleted: ->
     d = protractor.promise.defer()
 

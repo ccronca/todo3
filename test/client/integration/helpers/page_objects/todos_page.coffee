@@ -26,11 +26,11 @@ class TodosPage extends PageObject
     browser.findElements @By.css("ul#todo-list li")
 
   @has "form", ->
-    form = browser.findElement @By.css("form#todo-form")
+    form = browser.findElement @By.css("form#add-form")
     new FormView(form)
 
   todoAt: (index) ->
-    todoElement = browser.findElement @By.repeater("(id, todo) in todos").row(index)
+    todoElement = browser.findElement @By.repeater("(id, todo) in todos.todos").row(index)
     new TodoView(todoElement)
 
   todosCount: ->

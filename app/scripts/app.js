@@ -14,12 +14,16 @@ angular.module('todoApp', [
       })
       .when('/todos', {
         templateUrl: 'partials/todos',
-        controller: 'TodosCtrl',
-        reloadOnSearch: false,
+        controller: 'TodosCtrl as todos',
+        authenticate: true,
         resolve: {
-          todos: function(Todo) {
-            return Todo.query().$promise;
+          todos: function(Todos) {
+            return Todos.query().$promise;
+          },
+          Todo: function(Todos) {
+            return new Todos();
           }
+
         }
       })
       .when('/login', {

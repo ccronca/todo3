@@ -7,7 +7,7 @@ module.exports = function(config) {
     basePath: '',
 
     // testing framework to use (jasmine/mocha/qunit/...)
-    frameworks: ['mocha', 'chai'],
+    frameworks: ['mocha', 'chai', 'sinon'],
 
     // list of files / patterns to load in the browser
     files: [
@@ -17,13 +17,14 @@ module.exports = function(config) {
       'app/bower_components/angular-cookies/angular-cookies.js',
       'app/bower_components/angular-sanitize/angular-sanitize.js',
       'app/bower_components/angular-route/angular-route.js',
+      'app/bower_components/lodash/dist/lodash.js',
 
-      "app/bower_components/sinon/lib/sinon.js"
-      "app/bower_components/sinon/lib/sinon/spy.js"
-      "app/bower_components/sinon/lib/sinon/call.js"
-      "app/bower_components/sinon/lib/sinon/stub.js"
-      "app/bower_components/sinon/lib/sinon/mock.js"
-      "app/bower_components/sinon/lib/sinon/assert.js"
+      "app/bower_components/sinon/lib/sinon.js",
+      "app/bower_components/sinon/lib/sinon/spy.js",
+      "app/bower_components/sinon/lib/sinon/call.js",
+      "app/bower_components/sinon/lib/sinon/stub.js",
+      "app/bower_components/sinon/lib/sinon/mock.js",
+      "app/bower_components/sinon/lib/sinon/assert.js",
 
       'app/scripts/*.js',
       'app/scripts/**/*.js',
@@ -31,9 +32,14 @@ module.exports = function(config) {
     ],
 
     preprocessors: {
+      "app/scripts/**/*.js": ["coverage"],
       "test/client/unit/**/*_spec.coffee": ['coffee']
     },
-
+    reporters: ["dots", "coverage"],
+    coverageReporter: {
+      type: "text-summary",
+      dir: "coverage"
+    },
     // list of files / patterns to exclude
     exclude: [],
 
@@ -57,11 +63,22 @@ module.exports = function(config) {
     // - Safari (only Mac)
     // - PhantomJS
     // - IE (only Windows)
-    browsers: ['Chrome'],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
     // if true, it capture browsers, run tests and exit
-    singleRun: false
+    singleRun: true,
+
+    /*    plugins: [
+      "karma-coffee-preprocessor",
+
+      "karma-mocha",
+      "karma-chai-plugins",
+      "karma-spec-reporter",
+      "karma-coverage",
+
+      "karma-phantomjs-launcher"
+    ]*/
   });
 };
