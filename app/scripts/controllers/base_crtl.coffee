@@ -18,4 +18,3 @@ class @BaseCtrl
       @$scope[key] = fn.bind?(@) || _.bind(fn, @)
 
     @initialize?()
-    console.log @$inject

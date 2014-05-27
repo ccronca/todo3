@@ -38,7 +38,6 @@
       if (typeof this.initialize === "function") {
         this.initialize();
       }
-      console.log(this.$inject);
     }
 
     return BaseCtrl;
