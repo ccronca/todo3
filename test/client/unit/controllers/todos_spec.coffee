@@ -7,6 +7,8 @@ describe "Controller TodosCtrl", ->
   todos = null
   todo = null
 
+  count = 0
+
   # Initialize the controller and a mock scope
   beforeEach inject ($injector, $rootScope, $controller, $q) ->
 
@@ -14,7 +16,7 @@ describe "Controller TodosCtrl", ->
 
     ctrl = $controller "TodosCtrl",
       $scope: $scope,
-      Todo: $injector.get("Todo"),
+      Todo: $injector.get("Todos"),
       todos: [
         { title: 'Dummy title 1', completed: false, $remove: -> }, { title: 'Dummy title 1', completed: true, $remove: ->  }, { title: 'Dummy title 1', completed: true, $remove: -> }
       ]
@@ -75,9 +77,12 @@ describe "Controller TodosCtrl", ->
   describe "#add()", ->
     beforeEach inject ($q) ->
       form = $valid: true
+      count = ctrl.todos.length
       $scope.$apply -> ctrl.add(form, todo)
     it "saves the todo", ->
       expect(todo.$save.called).to.be.true
+      expect(count).to.be.equal (ctrl.todos.length - 1 )
+
 
   describe "#edit()", ->
     beforeEach ->
