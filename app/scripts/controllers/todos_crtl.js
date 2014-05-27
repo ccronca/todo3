@@ -106,7 +106,7 @@
       promise = todo.$save();
       return promise.then((function(_this) {
         return function(data) {
-          _this.todos.unshift(_this.data);
+          _this.todos.unshift(data);
           return _this.reset();
         };
       })(this));

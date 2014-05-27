@@ -52,7 +52,7 @@ class TodosCtrl extends BaseCtrl
         #successMessage = if product.id? then "Product was updated" else "Product was created"
 
         promise.then (data) =>
-            @todos.unshift @data
+            @todos.unshift data
             @reset()
             # @alerts.success successMessage
     delete: (todo) ->
