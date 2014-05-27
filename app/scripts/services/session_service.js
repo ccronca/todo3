@@ -1,6 +1,12 @@
-resources = angular.module('todoApp')
+(function() {
+  var resources;
 
-resources.factory 'Session', [
-  '$resource', ($resource) - >
-  $resource '/api/session/'
-]
+  resources = angular.module('todoApp');
+
+  resources.factory('Session', [
+    '$resource', function($resource) {
+      return $resource('/api/session/');
+    }
+  ]);
+
+}).call(this);
