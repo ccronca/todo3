@@ -10,7 +10,7 @@ angular.module('todoApp', [
     $routeProvider
       .when('/', {
         templateUrl: 'partials/main',
-        controller: 'MainCtrl'
+        controller: 'MainCtrl as crtl'
       })
       .when('/todos', {
         templateUrl: 'partials/todos',
@@ -28,7 +28,7 @@ angular.module('todoApp', [
       })
       .when('/login', {
         templateUrl: 'partials/login',
-    controller: 'LoginCtrl as ctrl'
+        controller: 'LoginCtrl as ctrl'
       })
       .when('/signup', {
         templateUrl: 'partials/signup',
