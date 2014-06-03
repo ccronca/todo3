@@ -41,7 +41,7 @@ angular.module('todoApp', [
       })
       .when('/profile', {
         templateUrl: 'partials/profile',
-        controller: 'ProfileCtrl',
+        controller: 'ProfileCtrl as ctrl',
         authenticate: true
       })
       .otherwise({
