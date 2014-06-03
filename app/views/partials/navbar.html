@@ -1,6 +1,6 @@
-<div class="header" ng-controller="NavbarCtrl">
+<div class="header" ng-controller="NavbarCtrl as ctrl">
   <ul class="nav nav-pills pull-right">
-    <li ng-repeat="item in menu" ng-class="{active: isActive(item.link)}">
+    <li ng-repeat="item in ctrl.getMenu()" ng-class="{active: ctrl.isActive(item.link)}">
         <a ng-href="{{item.link}}">{{item.title}}</a>
     </li>
     <li ng-hide="currentUser" ng-class="{active: isActive('/login')}"><a href="/login">Login</a></li>
