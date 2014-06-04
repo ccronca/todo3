@@ -32,7 +32,7 @@ angular.module('todoApp', [
       })
       .when('/signup', {
         templateUrl: 'partials/signup',
-        controller: 'SignupCtrl'
+        controller: 'SignupCtrl as ctrl'
       })
       .when('/settings', {
         templateUrl: 'partials/settings',
