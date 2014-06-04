@@ -8,8 +8,13 @@ class LoginCtrl extends BaseCtrl
     @inject '$scope', 'Auth', '$location'
 
     initialize: ->
+        @reset()
+
+    reset: ->
+        @message = ''
         @errors = {}
         @submitted = false
+
     login: (form, user) ->
         @submitted = true
         if (form.$valid)

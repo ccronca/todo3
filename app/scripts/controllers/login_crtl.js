@@ -18,6 +18,11 @@
     LoginCtrl.inject('$scope', 'Auth', '$location');
 
     LoginCtrl.prototype.initialize = function() {
+      return this.reset();
+    };
+
+    LoginCtrl.prototype.reset = function() {
+      this.message = '';
       this.errors = {};
       return this.submitted = false;
     };

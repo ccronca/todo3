@@ -36,7 +36,7 @@ angular.module('todoApp', [
       })
       .when('/settings', {
         templateUrl: 'partials/settings',
-        controller: 'SettingsCtrl',
+        controller: 'SettingsCtrl as ctrl',
         authenticate: true
       })
       .when('/profile', {
