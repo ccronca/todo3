@@ -115,7 +115,7 @@ module.exports = function(grunt) {
         src: ['lib/{,*/}*.js']
       },
       all: [
-      '<%= yeoman.app %>/scripts/{,*/}*.js', '!<%= yeoman.app %>/scripts/{,*/}*_*.js'
+        '<%= yeoman.app %>/scripts/{,*/}*.js', '!<%= yeoman.app %>/scripts/{,*/}*_*.js'
       ],
       test: {
         options: {
@@ -436,7 +436,7 @@ module.exports = function(grunt) {
     // Test settings
     karma: {
       unit: {
-        configFile: 'karma.conf.js',
+        configFile: 'test/karma.conf.js',
         singleRun: true
       }
     },
@@ -444,7 +444,7 @@ module.exports = function(grunt) {
     protractor: {
       options: {
         keepAlive: true,
-        configFile: 'protractor.conf.js'
+        configFile: 'test/protractor.conf.js'
       },
       run: {}
     },

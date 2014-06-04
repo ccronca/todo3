@@ -11,29 +11,29 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-      'app/bower_components/angular/angular.js',
-      'app/bower_components/angular-mocks/angular-mocks.js',
-      'app/bower_components/angular-resource/angular-resource.js',
-      'app/bower_components/angular-cookies/angular-cookies.js',
-      'app/bower_components/angular-sanitize/angular-sanitize.js',
-      'app/bower_components/angular-route/angular-route.js',
-      'app/bower_components/lodash/dist/lodash.js',
+      '../app/bower_components/angular/angular.js',
+      '../app/bower_components/angular-mocks/angular-mocks.js',
+      '../app/bower_components/angular-resource/angular-resource.js',
+      '../app/bower_components/angular-cookies/angular-cookies.js',
+      '../app/bower_components/angular-sanitize/angular-sanitize.js',
+      '../app/bower_components/angular-route/angular-route.js',
+      '../app/bower_components/lodash/dist/lodash.js',
 
-      "app/bower_components/sinon/lib/sinon.js",
-      "app/bower_components/sinon/lib/sinon/spy.js",
-      "app/bower_components/sinon/lib/sinon/call.js",
-      "app/bower_components/sinon/lib/sinon/stub.js",
-      "app/bower_components/sinon/lib/sinon/mock.js",
-      "app/bower_components/sinon/lib/sinon/assert.js",
+      "../app/bower_components/sinon/lib/sinon.js",
+      "../app/bower_components/sinon/lib/sinon/spy.js",
+      "../app/bower_components/sinon/lib/sinon/call.js",
+      "../app/bower_components/sinon/lib/sinon/stub.js",
+      "../app/bower_components/sinon/lib/sinon/mock.js",
+      "../app/bower_components/sinon/lib/sinon/assert.js",
 
-      'app/scripts/*.js',
-      'app/scripts/**/*.js',
-      "test/client/unit/**/*_spec.coffee"
+      '../app/scripts/*.js',
+      '../app/scripts/**/*.js',
+      "client/unit/**/*_spec.coffee"
     ],
 
     preprocessors: {
-      "app/scripts/**/*.js": ["coverage"],
-      "test/client/unit/**/*_spec.coffee": ['coffee']
+      "../app/scripts/**/*.js": ["coverage"],
+      "client/unit/**/*_spec.coffee": ['coffee']
     },
     reporters: ["dots", "coverage"],
     coverageReporter: {

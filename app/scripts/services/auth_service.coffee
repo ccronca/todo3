@@ -4,7 +4,7 @@ resources.factory 'Auth', [
     '$rootScope', 'Session', 'User', '$cookieStore', ($rootScope, Session, User, $cookieStore) ->
 
         getCallBack = (cb) ->
-            if cb then callback else angular.noop
+            if cb then cb else angular.noop
 
         new class Auth
             constructor: ->

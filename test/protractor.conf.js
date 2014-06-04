@@ -18,7 +18,7 @@ exports.config = {
 
   // list of files / patterns to load in the browser
   specs: [
-    'test/client/integration/**/*_scenario.coffee'
+    'client/integration/**/*_scenario.coffee'
   ],
 
   // Patterns to exclude.

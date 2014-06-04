@@ -8,7 +8,7 @@
       var Auth, getCallBack;
       getCallBack = function(cb) {
         if (cb) {
-          return callback;
+          return cb;
         } else {
           return angular.noop;
         }
