@@ -7,7 +7,7 @@ module.exports = (grunt) ->
         dist: "dist"
         dev: "dev"
 
-    loadMoule = (name) ->
+    loadModule = (name) ->
         require("./build/config/#{name}")(grunt, appConfig)
 
     require('load-grunt-tasks')(grunt)
@@ -16,29 +16,30 @@ module.exports = (grunt) ->
 
     grunt.initConfig
         appConfig: appConfig
-        express: loadMoule "express"
-        open: loadMoule "open"
-        watch: loadMoule "watch"
-        jshint: loadMoule "jshint"
-        clean: loadMoule "clean"
-        autoprefixer: loadMoule "autoprefixer"
-        nodemon: loadMoule "nodemon"
-        'bower-install': loadMoule "bower-install"
-        compass: loadMoule "compass"
-        rev: loadMoule "rev"
-        useminPrepare: loadMoule "usemin-prepare"
-        usemin: loadMoule "usemin"
-        imagemin: loadMoule "imagemin"
-        svgmin: loadMoule "svgmin"
-        htmlmin: loadMoule "htmlmin"
-        cdnify: loadMoule "cdnify"
-        copy: loadMoule "copy"
-        concurrent: loadMoule "concurrent"
-        karma: loadMoule "karma"
-        protractor: loadMoule "protractor"
-        mochaTest: loadMoule "mocha-test"
-        coffee: loadMoule "coffee"
-        env: loadMoule "env"
+        express: loadModule "express"
+        open: loadModule "open"
+        watch: loadModule "watch"
+        jshint: loadModule "jshint"
+        clean: loadModule "clean"
+        autoprefixer: loadModule "autoprefixer"
+        nodemon: loadModule "nodemon"
+        'bower-install': loadModule "bower-install"
+        compass: loadModule "compass"
+        rev: loadModule "rev"
+        useminPrepare: loadModule "usemin-prepare"
+        usemin: loadModule "usemin"
+        imagemin: loadModule "imagemin"
+        svgmin: loadModule "svgmin"
+        htmlmin: loadModule "htmlmin"
+        ngmin: loadModule "ngmin"
+        cdnify: loadModule "cdnify"
+        copy: loadModule "copy"
+        concurrent: loadModule "concurrent"
+        karma: loadModule "karma"
+        protractor: loadModule "protractor"
+        mochaTest: loadModule "mocha-test"
+        coffee: loadModule "coffee"
+        env: loadModule "env"
 
     grunt.registerTask "wait", =>
         grunt.log.ok('Waiting for server reload...')
