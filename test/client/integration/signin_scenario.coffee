@@ -19,16 +19,17 @@ describe "Signin page", ->
     beforeEach ->
       signinPage.signInInput.click()
     it "should display a error message", ->
-        expect(signinPage.errors.getText()).to.eventually.eq "Missing credentials"
+        expect(signinPage.formErrorEmpty.isDisplayed()).to.eventually.true
+        expect(signinPage.formErrorEmpty.getText()).to.eventually.eq "Please enter your email and password."
 
   describe "click on 'signin' button with incorrect data", ->
     it "should display a error message if password is incorrect", ->
         signinPage.signin null, "password"
-        expect(signinPage.errors.getText()).to.eventually.eq "This password is not correct."
+        expect(signinPage.formError.getText()).to.eventually.eq "This password is not correct."
 
     it "should display a error message if password is incorrect", ->
         signinPage.signin "anothertest@test.com"
-        expect(signinPage.errors.getText()).to.eventually.eq "This email is not registered."
+        expect(signinPage.formError.getText()).to.eventually.eq "This email is not registered."
 
   describe "click on 'signin' button with correct data", ->
     beforeEach ->

@@ -2,8 +2,8 @@ module.exports = (grunt) ->
     compile:
         files: [
             expand: true
-            cwd: ''
-            src: ['<%= appConfig.app %>/scripts/**/*.coffee']
-            dest: ''
-            ext: '.js'
+            cwd: "<%= appConfig.app %>/scripts"
+            src: "**/*.coffee"
+            dest: "<%= appConfig.dev %>/scripts"
+            ext: ".js"
         ]

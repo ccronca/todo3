@@ -9,10 +9,16 @@ class LoginPage extends PageObject
         browser.findElement @By.input "user.password"
 
     @has "signInInput", ->
-        browser.findElement @By.css "button#signin-btn"
+        browser.findElement @By.css "button#signinBtn"
 
-    @has "errors", ->
-        browser.findElement @By.css "p#errors-form"
+    @has "formError", ->
+        browser.findElement @By.css "p#formError"
+
+    @has "formErrorEmail", ->
+        browser.findElement @By.css "p#formErrorEmail"
+
+    @has "formErrorEmpty", ->
+        browser.findElement @By.css "p#formErrorEmpty"
 
     setEmail: (value) ->
         @userEmail.clear()

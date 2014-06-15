@@ -5,28 +5,28 @@ FormView = require("./todos/form_view")
 class TodosPage extends PageObject
 
   @has "remaining", ->
-    browser.findElement @By.css("span#todo-count")
+    browser.findElement @By.css("span#todoCount")
 
   @has "allCheckedButton", ->
     browser.findElement @By.input "allChecked"
 
   @has "clearCompletedButton", ->
-    browser.findElement @By.css "button#clear-completed"
+    browser.findElement @By.css "button#clearCompleted"
 
   @has "filterAllLink", ->
-    browser.findElement @By.css "a#filter-all"
+    browser.findElement @By.css "a#filterAll"
 
   @has "filterActiveLink", ->
-    browser.findElement @By.css "a#filter-active"
+    browser.findElement @By.css "a#filterActive"
 
   @has "filterCompletedLink", ->
-    browser.findElement @By.css "a#filter-completed"
+    browser.findElement @By.css "a#filterCompleted"
 
   @has "todos", ->
-    browser.findElements @By.css("ul#todo-list li")
+    browser.findElements @By.css("ul#todoList li")
 
   @has "form", ->
-    form = browser.findElement @By.css("form#add-form")
+    form = browser.findElement @By.css("form#addForm")
     new FormView(form)
 
   todoAt: (index) ->

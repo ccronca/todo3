@@ -4,7 +4,7 @@ class FormView extends PageObject
 
   constructor: (@base) ->
 
-  @has "todoField", -> @base.findElement @By.input("todos.todo.title")
+  @has "todoField", -> @base.findElement @By.input("todo.title")
 
   setTodo: (value) ->
     @todoField.clear()

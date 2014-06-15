@@ -25,14 +25,13 @@ module.exports = function(config) {
       "../app/bower_components/sinon/lib/sinon/stub.js",
       "../app/bower_components/sinon/lib/sinon/mock.js",
       "../app/bower_components/sinon/lib/sinon/assert.js",
-
-      '../app/scripts/*.js',
-      '../app/scripts/**/*.js',
+      '../dev/scripts/*.js',
+      '../dev/scripts/**/*.js',
       "client/unit/**/*_spec.coffee"
     ],
 
     preprocessors: {
-      "../app/scripts/**/*.js": ["coverage"],
+      "../dev/scripts/**/*.js": ["coverage"],
       "client/unit/**/*_spec.coffee": ['coffee']
     },
     reporters: ["dots", "coverage"],

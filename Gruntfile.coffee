@@ -5,7 +5,7 @@ module.exports = (grunt) ->
         app: "app"
         test: "test"
         dist: "dist"
-        dev: "dev"
+        dev: "tmp"
 
     loadModule = (name) ->
         require("./build/config/#{name}")(grunt, appConfig)
@@ -75,8 +75,9 @@ module.exports = (grunt) ->
         ]
 
     grunt.registerTask "test" , (target) ->
-        grunt.task.run ['env:test','mochaTest'] if target == 'server'
-        if target == 'client'
+        if target == 'server'
+            grunt.task.run ['env:test','mochaTest']
+        else if target == 'client'
             grunt.task.run [
                 'clean:server'
                 'concurrent:test'
@@ -84,11 +85,11 @@ module.exports = (grunt) ->
                 'karma'
                 'protractor'
             ]
-
-        grunt.task.run [
-            'test:server'
-            'test:client'
-        ]
+        else
+            grunt.task.run [
+                'test:server'
+                'test:client'
+            ]
 
     grunt.registerTask 'build', [
         'clean:dist'
