@@ -1,5 +1,5 @@
 module.exports = (grunt) ->
     unit:
-        configFile: 'test/karma.conf.js'
+        configFile: 'test/karma.conf.coffee'
         singleRun: true
 
