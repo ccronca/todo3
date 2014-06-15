@@ -28,7 +28,7 @@ module.exports = (grunt) ->
             dest: '<%= appConfig.dist %>'
             src: [
                 'package.json'
-                'server.js'
+                'server.coffee'
                 'lib/**/*'
             ]
         ]

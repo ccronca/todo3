@@ -1,5 +1,3 @@
-'use strict';
-
 module.exports = (grunt) ->
     appConfig =
         app: "app"
@@ -63,16 +61,16 @@ module.exports = (grunt) ->
                 'autoprefixer'
                 'concurrent:debug'
             ]
-
-        grunt.task.run [
-            'clean:server'
-            'bower-install'
-            'concurrent:server'
-            'autoprefixer'
-            'express:dev'
-            'open'
-            'watch'
-        ]
+        else
+            grunt.task.run [
+                'clean:server'
+                'bower-install'
+                'concurrent:server'
+                'autoprefixer'
+                'express:dev'
+                'open'
+                'watch'
+            ]
 
     grunt.registerTask "test" , (target) ->
         if target == 'server'
