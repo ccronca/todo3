@@ -2,4 +2,4 @@ module.exports = (grunt) ->
     options:
         reporter: 'spec'
     include: []
-    src: ['test/server/controllers/*.js', 'test/server/models/*.js']
+    src: ['test/server/controllers/*.coffee', 'test/server/models/*.coffee']
