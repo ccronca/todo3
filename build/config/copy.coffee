@@ -8,19 +8,19 @@ module.exports = (grunt) ->
             src: [
                 '*.{ico,png,txt}'
                 '.htaccess'
-                'bower_components/**/*'
+                'components/**/*'
                 'images/{,*/}*.{webp}'
                 'fonts/**/*'
             ]
         ,
             expand: true
             dot: true
-            cwd: '<%= appConfig.app %>/views'
+            cwd: '<%= appConfig.dev %>/views'
             dest: '<%= appConfig.dist %>/views'
             src: '**/*.jade'
         ,
             expand: true
-            cwd: '.tmp/images'
+            cwd: '<%= appConfig.app %>/images'
             dest: '<%= appConfig.dist %>/public/images'
             src: ['generated/*']
         ,
@@ -35,5 +35,5 @@ module.exports = (grunt) ->
         styles:
             expand: true
             cwd: '<%= appConfig.app %>/styles'
-            dest: '.tmp/styles/'
+            dest: '<%= appConfig.dist %>/public/styles/'
             src: '{,*/}*.css'

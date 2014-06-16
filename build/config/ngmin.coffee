@@ -2,7 +2,7 @@ module.exports = (grunt) ->
     dist:
         files: [
             expand: true
-            cwd: '.tmp/concat/scripts'
+            cwd: 'dev/scripts'
             src: '*.js'
-            dest: '.tmp/concat/scripts'
+            dest: 'dev/scripts'
         ]

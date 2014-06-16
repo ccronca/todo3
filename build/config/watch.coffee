@@ -2,32 +2,32 @@ module.exports = (grunt) ->
     coffee:
         files: ['<%= appConfig.app %>/scripts/**/*.coffee']
         tasks: 'coffee'
-        options:
-            livereload: true
     mochaTest:
-        files: ['test/server/{,*/}*.coffee']
+        files: ['<%= appConfig.test %>/server/{,*/}*.coffee']
         tasks: ['env:test', 'mochaTest']
-    jsTest:
-        files: ['test/client/spec/{,*/}*.coffee']
-        tasks: ['newer:jshint:test', 'karma']
+    karmaTest:
+        files: ['<%= appConfig.test %>/client/unit/{,*/}*.coffee']
+        tasks: ['env:test', 'karma']
+    protractorTest:
+        files: ['<%= appConfig.test %>/client/integration/{,*/}*.coffee']
+        tasks: ['env:test', 'protractor']
     compass:
-        files: ['<%= appConfig.app %>/styles/{,*/}*.{scss,sass}']
+        files: ['<%= appConfig.dev %>/styles/{,*/}*.{scss,sass}']
         tasks: ['compass:server', 'autoprefixer']
     gruntfile:
         files: ['Gruntfile.coffee']
     livereload:
         files: [
-            '<%= appConfig.app %>/views/{,*//*}*.{html,jade}'
-            '{.tmp,<%= appConfig.app %>}/styles/{,*//*}*.css'
-            '{.tmp,<%= appConfig.app %>}/scripts/{,*//*}*.coffee'
+            '<%= appConfig.app %>/views/{,*//*}*.html'
+            '<%= appConfig.app %>/scripts/{,*//*}*.js'
             '<%= appConfig.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
         options:
             livereload: true
     express:
         files: [
-            'server'
-            'lib/**/*.{js,json}'
+            'server.coffee'
+            'lib/**/*.{coffee,json}'
         ]
         tasks: ['express:dev', 'wait']
         options:

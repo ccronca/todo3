@@ -3,7 +3,6 @@ module.exports = (grunt) ->
         files: [
             dot: true,
             src: [
-                '.tmp'
                 '<%= appConfig.dist %>/*'
                 '!<%= appConfig.dist %>/.git*'
                 '!<%= appConfig.dist %>/Procfile'

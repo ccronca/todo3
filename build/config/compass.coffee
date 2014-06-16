@@ -1,12 +1,12 @@
 module.exports = (grunt) ->
     options:
-        sassDir: '<%= appConfig.app %>/styles'
-        cssDir: '.tmp/styles'
-        generatedImagesDir: '.tmp/images/generated'
+        sassDir: '<%= appConfig.dev %>/styles'
+        cssDir: '<%= appConfig.app %>/styles'
+        generatedImagesDir: '<%= appConfig.app %>/images/generated'
         imagesDir: '<%= appConfig.app %>/images'
         javascriptsDir: '<%= appConfig.app %>/scripts'
         fontsDir: '<%= appConfig.app %>/styles/fonts'
-        importPath: '<%= appConfig.app %>/bower_components'
+        importPath: '<%= appConfig.app %>/components'
         httpImagesPath: '/images'
         httpGeneratedImagesPath: '/images/generated'
         httpFontsPath: '/styles/fonts'

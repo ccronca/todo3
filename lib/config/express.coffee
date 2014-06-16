@@ -20,7 +20,7 @@ module.exports = (app) ->
   env = app.get("env")
   if "development" is env or "test" is env
     app.use require("connect-livereload")()
-    
+
     # Disable caching of scripts for easier testing
     app.use noCache = (req, res, next) ->
       if req.url.indexOf("/scripts/") is 0
@@ -30,9 +30,7 @@ module.exports = (app) ->
       next()
       return
 
-    app.use express.static(path.join(config.root, ".tmp"))
     app.use express.static(path.join(config.root, "app"))
-    app.use express.static(path.join(config.root, "dev"))
     app.set "views", config.root + "/app/views"
   if "production" is env
     app.use compression()
@@ -45,7 +43,7 @@ module.exports = (app) ->
   app.use bodyParser()
   app.use methodOverride()
   app.use cookieParser()
-  
+
   # Persist sessions with mongoStore
   app.use session(
     secret: "angular-fullstack secret"
@@ -57,11 +55,11 @@ module.exports = (app) ->
       return
     )
   )
-  
+
   # Use passport session
   app.use passport.initialize()
   app.use passport.session()
-  
+
   # Error handler - has to be last
   app.use errorHandler()  if "development" is env
   return

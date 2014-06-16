@@ -3,7 +3,7 @@ module.exports = (grunt) ->
         app: "app"
         test: "test"
         dist: "dist"
-        dev: "tmp"
+        dev: "dev"
 
     loadModule = (name) ->
         require("./build/config/#{name}")(grunt, appConfig)
@@ -55,7 +55,6 @@ module.exports = (grunt) ->
         grunt.task.run ['build', 'express:prod', 'open', 'express-keepalive'] if target == 'dist'
         if target == 'debug'
             grunt.task.run [
-                'clean:server'
                 'bower-install'
                 'concurrent:server'
                 'autoprefixer'
@@ -63,7 +62,6 @@ module.exports = (grunt) ->
             ]
         else
             grunt.task.run [
-                'clean:server'
                 'bower-install'
                 'concurrent:server'
                 'autoprefixer'
@@ -77,7 +75,6 @@ module.exports = (grunt) ->
             grunt.task.run ['env:test','mochaTest']
         else if target == 'client'
             grunt.task.run [
-                'clean:server'
                 'concurrent:test'
                 'autoprefixer'
                 'karma'

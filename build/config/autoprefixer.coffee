@@ -4,7 +4,7 @@ module.exports = (grunt) ->
     dist:
         files: [
             expand: true
-            cwd: '.tmp/styles/'
+            cwd: '<%= appConfig.app %>/styles/'
             src: '{,*/}*.css'
-            dest: '.tmp/styles/'
+            dest: '<%= appConfig.app %>/styles/'
         ]
