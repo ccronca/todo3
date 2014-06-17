@@ -39,7 +39,7 @@ module.exports = (grunt) ->
         coffee: loadModule "coffee"
         env: loadModule "env"
 
-    grunt.registerTask "wait", =>
+    grunt.registerTask "wait", ->
         grunt.log.ok('Waiting for server reload...')
 
         done = @async()
@@ -49,7 +49,7 @@ module.exports = (grunt) ->
             done();
         , 500
 
-    grunt.registerTask "express-keepalive", "Keep grunt running", => @async()
+    grunt.registerTask "express-keepalive", "Keep grunt running", -> @async()
 
     grunt.registerTask "serve", (target) ->
         grunt.task.run ['build', 'express:prod', 'open', 'express-keepalive'] if target == 'dist'
