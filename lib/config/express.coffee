@@ -1,4 +1,3 @@
-"use strict"
 express = require("express")
 favicon = require("static-favicon")
 morgan = require("morgan")
@@ -11,7 +10,7 @@ errorHandler = require("errorhandler")
 path = require("path")
 config = require("./config")
 passport = require("passport")
-mongoStore = require("connect-mongo")(session)
+mongoStore = require("connect-mongo")({session: session})
 
 ###
 Express configuration
