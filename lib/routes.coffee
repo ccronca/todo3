@@ -22,9 +22,8 @@ module.exports = (app) ->
     passport.authenticate 'facebook', {
       # successRedirect : '/profile'
       failureRedirect: '/login'
-    }, (req, res) ->
-      # Successful authentication, redirect home.
-      res.redirect '/profile'
+      successRedirect: '/profile'
+    }
 
   # Server API Routes
   # Todo authorization helpers
