@@ -15,12 +15,12 @@ module.exports = (grunt) ->
         ,
             expand: true
             dot: true
-            cwd: '<%= appConfig.dev %>/views'
+            cwd: '<%= appConfig.app %>/views'
             dest: '<%= appConfig.dist %>/views'
             src: '**/*.jade'
         ,
             expand: true
-            cwd: '<%= appConfig.app %>/images'
+            cwd: '<%= appConfig.tmp %>/images'
             dest: '<%= appConfig.dist %>/public/images'
             src: ['generated/*']
         ,
@@ -35,5 +35,5 @@ module.exports = (grunt) ->
         styles:
             expand: true
             cwd: '<%= appConfig.app %>/styles'
-            dest: '<%= appConfig.dist %>/public/styles/'
+            dest: '<%= appConfig.tmp %>/public/styles/'
             src: '{,*/}*.css'

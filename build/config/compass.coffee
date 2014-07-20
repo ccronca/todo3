@@ -1,8 +1,8 @@
 module.exports = (grunt) ->
     options:
-        sassDir: '<%= appConfig.dev %>/styles'
-        cssDir: '<%= appConfig.app %>/styles'
-        generatedImagesDir: '<%= appConfig.app %>/images/generated'
+        sassDir: '<%= appConfig.app %>/styles'
+        cssDir: '<%= appConfig.tmp %>/styles'
+        generatedImagesDir: '<%= appConfig.tmp %>/images/generated'
         imagesDir: '<%= appConfig.app %>/images'
         javascriptsDir: '<%= appConfig.app %>/scripts'
         fontsDir: '<%= appConfig.app %>/styles/fonts'

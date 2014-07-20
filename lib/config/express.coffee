@@ -29,7 +29,8 @@ module.exports = (app) ->
       next()
       return
 
-    app.use express.static(path.join(config.root, "app"))
+    app.use(express.static(path.join(config.root, '.tmp')));
+    app.use(express.static(path.join(config.root, 'app')));
     app.set "views", config.root + "/app/views"
   if "production" is env
     app.use compression()

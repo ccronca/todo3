@@ -2,7 +2,7 @@ module.exports = (grunt) ->
     dist:
         files: [
             expand: true
-            cwd: 'dev/scripts'
+            cwd: '<%= appConfig.tmp %>/concat/scripts'
             src: '*.js'
-            dest: 'dev/scripts'
+            dest: '<%= appConfig.tmp %>/concat/scripts'
         ]

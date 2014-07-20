@@ -3,7 +3,7 @@ module.exports = (grunt) ->
         app: "app"
         test: "test"
         dist: "dist"
-        dev: "dev"
+        tmp: ".tmp"
 
     loadModule = (name) ->
         require("./build/config/#{name}")(grunt, appConfig)
@@ -17,7 +17,6 @@ module.exports = (grunt) ->
         express: loadModule "express"
         open: loadModule "open"
         watch: loadModule "watch"
-        jshint: loadModule "jshint"
         clean: loadModule "clean"
         autoprefixer: loadModule "autoprefixer"
         nodemon: loadModule "nodemon"

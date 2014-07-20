@@ -3,3 +3,5 @@ module.exports = (grunt) ->
         html: '<%= appConfig.app %>/views/index.html'
         ignorePath: '<%= appConfig.app %>/'
         exclude: ['bootstrap-sass']
+        dependencies: true
+        devDependencies: false

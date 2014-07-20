@@ -12,12 +12,13 @@
     <meta name="viewport" content="width=device-width">
     <!-- Place favicon.ico and apple-touch-icon.png in the root directory -->
     <!-- build:css(app) styles/vendor.css -->
-        <link href="components/todomvc-common/base.css" rel="stylesheet">
     <!-- bower:css -->
     <!-- endbower -->
     <!-- endbuild -->
-    <!-- build:css(app) styles/main.css -->
+    <!-- build:css({.tmp,app}) styles/main.css -->
+    <link rel="stylesheet" href="styles/base.css">
     <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/signin.css">
     <!-- endbuild -->
   </head>
   <body ng-app="todoApp">
@@ -56,7 +57,7 @@
     <!-- endbower -->
     <!-- endbuild -->
 
-    <!-- build:js(app) scripts/scripts.js -->
+    <!-- build:js({.tmp,app}) scripts/scripts.js -->
     <script src="scripts/app.js"></script>
     <script src="scripts/services/auth_service.js"></script>
     <script src="scripts/services/session_service.js"></script>

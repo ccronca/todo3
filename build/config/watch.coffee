@@ -12,14 +12,15 @@ module.exports = (grunt) ->
         files: ['<%= appConfig.test %>/client/integration/{,*/}*.coffee']
         tasks: ['env:test', 'protractor']
     compass:
-        files: ['<%= appConfig.dev %>/styles/{,*/}*.{scss,sass}']
+        files: ['<%= appConfig.app %>/styles/{,*/}*.{scss,sass}']
         tasks: ['compass:server', 'autoprefixer']
     gruntfile:
         files: ['Gruntfile.coffee']
     livereload:
         files: [
             '<%= appConfig.app %>/views/{,*//*}*.html'
-            '<%= appConfig.app %>/scripts/{,*//*}*.js'
+            '{<%= appConfig.tmp %>, <%= appConfig.app %>}/scripts/{,*//*}*.js'
+            '{<%= appConfig.tmp %>, <%= appConfig.app %>}/styles/{,*//*}*.css'
             '<%= appConfig.app %>/images/{,*//*}*.{png,jpg,jpeg,gif,webp,svg}'
         ]
         options:
