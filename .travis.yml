@@ -8,4 +8,3 @@ before_script:
   - gem install sass
   - gem install compass
 services: mongodb
-script: grunt
