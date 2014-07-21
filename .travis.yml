@@ -5,6 +5,7 @@ node_js:
 before_script:
   - 'npm install -g bower grunt-cli'
   - 'bower install'
-  - gem install sass
-  - gem install compass
+  - 'gem install sass'
+  - 'gem install compass'
+  - 'grunt coffee'
 services: mongodb
