@@ -28,11 +28,11 @@ module.exports = (config) ->
       "app/components/sinon/lib/sinon/stub.js"
       "app/components/sinon/lib/sinon/mock.js"
       "app/components/sinon/lib/sinon/assert.js"
-      "dev/scripts/**/*.js"
+      ".tmp/scripts/**/*.js"
       "test/client/unit/**/*_spec.coffee"
     ]
     preprocessors:
-      "dev/scripts/**/*.js": ["coverage"]
+      ".tmp/scripts/**/*.js": ["coverage"]
       "test/client/unit/**/*_spec.coffee": ["coffee"]
 
     reporters: [
