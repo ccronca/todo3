@@ -16,7 +16,7 @@
     "connect-mongo": "mrzepinski/connect-mongo#2135988",
     "passport": "~0.2.0",
     "passport-local": "~0.1.6",
-    "ejs": "~0.8.4",
+    "ejs": "~2.5.5",
     "passport-http-bearer": "^1.0.1",
     "passport-facebook": "^1.0.3",
     "randomstring": "^1.0.3",
