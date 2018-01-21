@@ -15,6 +15,7 @@ module.exports = (config) ->
 
     # list of files / patterns to load in the browser
     files: [
+      "'./node_modules/phantomjs-polyfill/bind-polyfill.js",
       "app/components/angular/angular.js"
       "app/components/angular-mocks/angular-mocks.js"
       "app/components/angular-resource/angular-resource.js"
